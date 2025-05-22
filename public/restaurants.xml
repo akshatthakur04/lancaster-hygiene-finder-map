@@ -1,0 +1,65 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<restaurants>
+  <restaurant id="xml-1">
+    <name>The Royal Oak</name>
+    <address>76 Market Street</address>
+    <city>Lancaster</city>
+    <postcode>LA1 1JG</postcode>
+    <latitude>54.0479</latitude>
+    <longitude>-2.8031</longitude>
+    <hygiene_rating>5</hygiene_rating>
+    <last_inspection>2023-11-15</last_inspection>
+    <cuisine>British</cuisine>
+    <price_range>££</price_range>
+    <description>Traditional pub with excellent food and local ales.</description>
+    <phone>01524 789234</phone>
+    <website>https://royaloak-lancaster.example.com</website>
+    <opening_hours>
+      <monday>12:00 - 23:00</monday>
+      <tuesday>12:00 - 23:00</tuesday>
+      <wednesday>12:00 - 23:00</wednesday>
+      <thursday>12:00 - 23:00</thursday>
+      <friday>12:00 - 00:00</friday>
+      <saturday>12:00 - 00:00</saturday>
+      <sunday>12:00 - 22:30</sunday>
+    </opening_hours>
+    <reviews>
+      <review>
+        <user_name>LancasterFoodie</user_name>
+        <rating>4.5</rating>
+        <comment>Great Sunday roast and excellent service!</comment>
+        <date>2023-12-10</date>
+      </review>
+    </reviews>
+  </restaurant>
+  <restaurant id="xml-2">
+    <name>Spice Fusion</name>
+    <address>12 Church Street</address>
+    <city>Lancaster</city>
+    <postcode>LA1 1ET</postcode>
+    <latitude>54.0488</latitude>
+    <longitude>-2.8016</longitude>
+    <hygiene_rating>4</hygiene_rating>
+    <last_inspection>2023-10-05</last_inspection>
+    <cuisine>Indian</cuisine>
+    <price_range>££</price_range>
+    <description>Modern Indian cuisine with a fusion twist.</description>
+    <phone>01524 123987</phone>
+    <website>https://spicefusion.example.com</website>
+  </restaurant>
+  <restaurant id="xml-3">
+    <name>The Green Avocado</name>
+    <address>35 Penny Street</address>
+    <city>Lancaster</city>
+    <postcode>LA1 1XT</postcode>
+    <latitude>54.0461</latitude>
+    <longitude>-2.8018</longitude>
+    <hygiene_rating>5</hygiene_rating>
+    <last_inspection>2023-11-20</last_inspection>
+    <cuisine>Vegan</cuisine>
+    <price_range>££</price_range>
+    <description>Plant-based cafe with organic, locally-sourced ingredients.</description>
+    <phone>01524 876234</phone>
+  </restaurant>
+</restaurants>

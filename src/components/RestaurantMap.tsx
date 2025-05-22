@@ -9,6 +9,7 @@ interface RestaurantMapProps {
   restaurants: Restaurant[];
   selectedRestaurant: Restaurant | null;
   onRestaurantSelect: (restaurant: Restaurant) => void;
+  isLoading?: boolean;
 }
 
 // This is a temporary access token - in a real app, you would handle this securely
@@ -18,7 +19,8 @@ const MAPBOX_ACCESS_TOKEN = "ENTER_YOUR_MAPBOX_TOKEN";
 const RestaurantMap: React.FC<RestaurantMapProps> = ({ 
   restaurants, 
   selectedRestaurant,
-  onRestaurantSelect
+  onRestaurantSelect,
+  isLoading = false
 }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
@@ -156,7 +158,7 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-lg border border-border">
-      {!mapLoaded && (
+      {(!mapLoaded || isLoading) && (
         <div className="absolute inset-0 z-10 bg-muted/50 flex items-center justify-center">
           <div className="space-y-4">
             <Skeleton className="h-[300px] w-[500px] rounded-lg" />

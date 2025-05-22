@@ -6,8 +6,9 @@ import RestaurantMap from '@/components/RestaurantMap';
 import RestaurantList from '@/components/RestaurantList';
 import RestaurantDetails from '@/components/RestaurantDetails';
 import Footer from '@/components/Footer';
-import { restaurants } from '@/data/restaurantData';
+import { restaurants, loadRestaurantsData } from '@/data/restaurantData';
 import { Restaurant, FilterOptions } from '@/types/restaurant';
+import { toast } from '@/components/ui/use-toast';
 
 const Index = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(restaurants);
@@ -20,6 +21,33 @@ const Index = () => {
     cuisine: null,
     priceRange: null
   });
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load XML data on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        await loadRestaurantsData("/restaurants.xml");
+        setFilteredRestaurants(restaurants);
+        toast({
+          title: "Data Loaded",
+          description: `Loaded ${restaurants.length} restaurants from data source`,
+        });
+      } catch (error) {
+        console.error("Failed to load restaurant data:", error);
+        toast({
+          title: "Data Load Error",
+          description: "Failed to load restaurant data. Using default data instead.",
+          variant: "destructive"
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadData();
+  }, []);
 
   // Apply filters when search term or filters change
   useEffect(() => {
@@ -83,12 +111,14 @@ const Index = () => {
               restaurants={filteredRestaurants}
               selectedRestaurant={selectedRestaurant}
               onRestaurantSelect={handleRestaurantSelect}
+              isLoading={isLoading}
             />
           ) : (
             <RestaurantList 
               restaurants={filteredRestaurants}
               selectedRestaurant={selectedRestaurant}
               onRestaurantSelect={handleRestaurantSelect}
+              isLoading={isLoading}
             />
           )}
         </div>

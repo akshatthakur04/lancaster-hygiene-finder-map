@@ -3,18 +3,35 @@ import React from 'react';
 import { Restaurant } from '@/types/restaurant';
 import RestaurantCard from './RestaurantCard';
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface RestaurantListProps {
   restaurants: Restaurant[];
   selectedRestaurant: Restaurant | null;
   onRestaurantSelect: (restaurant: Restaurant) => void;
+  isLoading?: boolean;
 }
 
 const RestaurantList: React.FC<RestaurantListProps> = ({ 
   restaurants, 
   selectedRestaurant, 
-  onRestaurantSelect 
+  onRestaurantSelect,
+  isLoading = false
 }) => {
+  if (isLoading) {
+    return (
+      <ScrollArea className="h-full">
+        <div className="p-4 space-y-4">
+          {[1, 2, 3, 4, 5].map((index) => (
+            <div key={index} className="space-y-2">
+              <Skeleton className="h-48 w-full rounded-lg" />
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    );
+  }
+
   return (
     <ScrollArea className="h-full">
       <div className="p-4 space-y-4">

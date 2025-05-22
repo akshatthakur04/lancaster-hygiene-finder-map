@@ -1,7 +1,8 @@
-
 import { Restaurant } from "../types/restaurant";
+import { loadRestaurantsFromXml } from "@/utils/xmlParser";
 
-export const restaurants: Restaurant[] = [
+// Default restaurants in case XML loading fails
+export const defaultRestaurants: Restaurant[] = [
   {
     id: "1",
     name: "The Lancaster Brasserie",
@@ -188,6 +189,27 @@ export const restaurants: Restaurant[] = [
   }
 ];
 
+// This will hold our restaurants, initially the defaults
+export let restaurants: Restaurant[] = [...defaultRestaurants];
+
+// Function to load restaurants from XML
+export const loadRestaurantsData = async (xmlPath: string = "/restaurants.xml"): Promise<void> => {
+  try {
+    const xmlRestaurants = await loadRestaurantsFromXml(xmlPath);
+    if (xmlRestaurants.length > 0) {
+      // Replace default restaurants with XML data
+      restaurants = xmlRestaurants;
+      console.log(`Loaded ${restaurants.length} restaurants from XML file`);
+    } else {
+      console.warn("No restaurants found in XML file, using default data");
+    }
+  } catch (error) {
+    console.error("Failed to load XML restaurant data:", error);
+    console.warn("Using default restaurant data instead");
+  }
+};
+
+// Utility functions
 export const getHygieneColor = (rating: number): string => {
   switch(rating) {
     case 5: return "hygiene-excellent";
