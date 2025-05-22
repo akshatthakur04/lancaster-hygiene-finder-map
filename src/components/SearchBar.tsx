@@ -88,14 +88,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange, onFilterChange })
 
             {/* Cuisine Filter */}
             <Select
-              value={filters.cuisine || ""}
+              value={filters.cuisine || undefined}
               onValueChange={(value) => updateFilters({ cuisine: value || null })}
             >
               <SelectTrigger className="w-[130px]">
                 <SelectValue placeholder="Cuisine" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any Cuisine</SelectItem>
+                <SelectItem value="any">Any Cuisine</SelectItem>
                 {cuisines.map(cuisine => (
                   <SelectItem key={cuisine} value={cuisine}>{cuisine}</SelectItem>
                 ))}
@@ -104,14 +104,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange, onFilterChange })
 
             {/* Price Range Filter */}
             <Select
-              value={filters.priceRange || ""}
+              value={filters.priceRange || undefined}
               onValueChange={(value) => updateFilters({ priceRange: value || null })}
             >
               <SelectTrigger className="w-[120px]">
                 <SelectValue placeholder="Price" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any Price</SelectItem>
+                <SelectItem value="any">Any Price</SelectItem>
                 {priceRanges.map(price => (
                   <SelectItem key={price} value={price}>{price}</SelectItem>
                 ))}
